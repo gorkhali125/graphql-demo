@@ -14,6 +14,35 @@ app.use(bodyParser.json());
 app.use(
 	'/graphql',
 	graphqlHttp({
+		schema: buildSchema(`
+    type Note {
+      _id: ID!
+      title: String!
+      description: String!
+      status: Float!
+      date: String!
+    }
+
+    input NoteInput {
+      title: String!
+      description: String!
+      status: Float!
+      date: String!
+    }
+
+    type RootQuery {
+      notes: [Note!]!
+    }
+
+    type RootMutation {
+      createNote(noteInput: NoteInput) : Note
+    }
+
+    schema {
+      query: RootQuery
+      mutation: RootMutation
+    }
+  `),
 		graphiql: true
 	})
 );
