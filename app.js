@@ -43,6 +43,35 @@ app.use(
       mutation: RootMutation
     }
   `),
+		rootValue: {
+			notes: async () => {
+				try {
+					const notes = await Note.find();
+					return notes.map((note) => {
+						return { ...note._doc };
+					});
+				}
+				catch (err) {
+					throw err;
+				}
+			},
+			createNote: (args) => {
+				const note = new Note({
+					title: args.noteInput.title,
+					description: args.noteInput.description,
+					status: +args.noteInput.status,
+					date: new Date(args.noteInput.date)
+				});
+				return note
+					.save()
+					.then((result) => {
+						return { ...result._doc };
+					})
+					.catch((err) => {
+						throw err;
+					});
+			},
+		},
 		graphiql: true
 	})
 );
