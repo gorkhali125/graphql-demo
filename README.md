@@ -93,7 +93,30 @@ query{
   }
 }
 ```
-Try a few other queries and check the output.
+This outputs the result as shown below
 
+```
+{
+  "data": {
+    "notes": [
+      {
+        "title": "Test Note",
+        "description": "Test Description",
+        "date": "1598969885592"
+      },
+      {
+        "title": "Test Note 2 ",
+        "description": "Test Description 2",
+        "date": "1598971369362"
+      },
+      {
+        "title": "Test Note 3",
+        "description": "Test Description 3",
+        "date": "1598971382987"
+      }
+    ]
+  }
+}
+```
 
 
